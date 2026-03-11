@@ -1,0 +1,343 @@
+html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Необычные хобби | Конланг, карвинг по мылу, GeoGuessr</title>
+    <!-- Simple modern styling, matching the layout from the image -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f7f9fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e293b;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .page {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* header area: title + contact/download row */
+        .header {
+            padding: 2rem 2.5rem 0.5rem 2.5rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e2b3a, #2c3e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.4rem;
+        }
+
+        .header-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eef2f6;
+            padding-bottom: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-download {
+            display: flex;
+            gap: 1.8rem;
+            font-weight: 500;
+        }
+
+        .contact-download span {
+            cursor: default;
+            color: #3b4e62;
+            font-size: 1.1rem;
+            border-bottom: 2px dotted transparent;
+            transition: 0.2s;
+        }
+
+        .contact-download span:hover {
+            border-bottom-color: #8a9bb0;
+        }
+
+        /* карточки хобби (три штуки) */
+        .hobby-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+        }
+
+        .hobby-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.8rem 2rem 1.8rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            border: 1px solid #edf2f7;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 30px -8px rgba(0,40,60,0.12);
+            border-color: #dde7f0;
+        }
+
+        .hobby-title {
+            font-size: 1.8rem;
+            font-weight: 650;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.2rem;
+            color: #0f1a2c;
+            border-left: 5px solid #bcd0e4;
+            padding-left: 1rem;
+        }
+
+        .hobby-desc {
+            color: #2d3f53;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* small extra style for geo hint */
+        .geo-note {
+            margin-top: 1rem;
+            background: #f0f6fe;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #1e3f5f;
+            display: inline-block;
+        }
+
+        /* нижняя часть: Namely + колонки */
+        .bottom-section {
+            background: #f0f4fa;
+            padding: 2rem 2.5rem 2.8rem 2.5rem;
+            margin-top: 1rem;
+            border-top: 1px solid #dbe4ed;
+        }
+
+        .namely-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2rem;
+        }
+
+        .namely {
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #0d2b3e;
+            letter-spacing: -0.01em;
+        }
+
+        .namely + p {
+            color: #3b556e;
+            max-width: 400px;
+            font-style: italic;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 1.2rem;
+        }
+
+        .col h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #183b56;
+            border-bottom: 2px solid #cbd6e4;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .col ul {
+            list-style: none;
+        }
+
+        .col li {
+            margin-bottom: 0.7rem;
+            color: #2c4763;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .col li::before {
+            content: "•";
+            color: #7089a8;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* support block extra */
+        .support-block {
+            margin-top: 2.5rem;
+            background: #ffffffbb;
+            padding: 1.3rem 2rem;
+            border-radius: 60px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            backdrop-filter: blur(2px);
+            border: 1px solid #d3e0ee;
+        }
+
+        .support-item {
+            color: #1a3c5e;
+            font-weight: 500;
+        }
+
+        /* адаптация */
+        @media (max-width: 900px) {
+            .hobby-grid, .columns {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .header { padding: 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .hobby-grid, .columns {
+                grid-template-columns: 1fr;
+            }
+            .header-row {
+                flex-direction: column;
+                align-items: start;
+                gap: 0.5rem;
+            }
+            .bottom-section { padding: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- Шапка: Необычные хобби + Contact / Download (как в макете) -->
+    <div class="header">
+        <h1>Необычные хобби и увлечения</h1>
+        <div class="header-row">
+            <!-- пустой div слева для баланса (либо можно ничего) -->
+            <div></div>
+            <div class="contact-download">
+                <span>📞 Contact</span>
+                <span>⬇️ Download</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Три карточки хобби (Конланг, Карвинг по мылу, GeoGuessr) с точными текстами из макета -->
+    <div class="hobby-grid">
+        <!-- Конланг -->
+        <div class="hobby-card">
+            <div class="hobby-title">Конланг</div>
+            <div class="hobby-desc">
+                Конланг — это создание искусственных языков, таких как дотракийский, клингонский и эсперанто.
+            </div>
+            <!-- маленькая деталь (иконка языка) чисто для настроения -->
+            <div style="margin-top: 1.2rem; font-size: 1.2rem;">🗣️ 🌐</div>
+        </div>
+
+        <!-- Карвинг по мылу -->
+        <div class="hobby-card">
+            <div class="hobby-title">Карвинг по мылу</div>
+            <div class="hobby-desc">
+                Карвинг по мылу — это вид искусства вырезания мыла с помощью различных инструментов для создания скульптур и изображений.
+            </div>
+            <div style="margin-top: 1.2rem;">🧼 ✨</div>
+        </div>
+
+        <!-- GeoGuessr (с дополнительной пометкой из макета) -->
+        <div class="hobby-card">
+            <div class="hobby-title">GeoGuessr</div>
+            <div class="hobby-desc">
+                В игре используются карты Google Street View, игроку требуется угадать местоположение улицы/переулка/шоссе в мире, пометив его на карте Google Maps.
+            </div>
+            <div class="geo-note">🌍📍 угадай локацию</div>
+        </div>
+    </div>
+
+    <!-- Нижняя часть — Namely + Features, Learn more, Support (в точности по макету) -->
+    <div class="bottom-section">
+        <!-- строка Namely с описанием компании (как в макете) -->
+        <div class="namely-row">
+            <div>
+                <span class="namely">Namely</span>
+            </div>
+            <p>Descriptive line about what your company does.</p>
+        </div>
+
+        <!-- три колонки: Features, Learn more, Support (точно по тексту) -->
+        <div class="columns">
+            <!-- Features (с подпунктами) -->
+            <div class="col">
+                <h4>Features</h4>
+                <ul>
+                    <li>Core features</li>
+                    <li>Pro experience</li>
+                    <li>Integrations</li>
+                </ul>
+            </div>
+            <!-- Learn more (с подпунктами) -->
+            <div class="col">
+                <h4>Learn more</h4>
+                <ul>
+                    <li>Blog</li>
+                    <li>Case studies</li>
+                    <li>Customer stories</li>
+                    <li>Best practices</li>
+                </ul>
+            </div>
+            <!-- Support (с подпунктами) -->
+            <div class="col">
+                <h4>Support</h4>
+                <ul>
+                    <li>Contact</li>
+                    <li>Support</li>
+                    <li>Legal</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- дополнительный блок "Contact / Support / Legal" уже есть в колонке Support, 
+        но в оригинальном макете снизу есть повтор "Contact Support Legal"? 
+        В макете после колонок снова написано Support с контактами. Но мы уже всё вывели. 
+        Для точности: в самом низу макета было "Support - Contact - Support - Legal". 
+        Я добавлю деликатную строку с этими тремя словами, чтобы полностью повторить идею.  -->
+        <div class="support-block">
+            <span class="support-item">📬 Contact</span>
+            <span class="support-item">🛠️ Support</span>
+            <span class="support-item">⚖️ Legal</span>
+        </div>
+
+        <!-- маленькая подсказка: в макете было также "Namely" и "Features ..." – всё уже есть. 
+        Ещё раз ссылка на Download/Contact в шапке, но нижний блок тоже содержит Contact.
+        В точности как на изображении: после Features, Learn more, Support идёт строчка Namely (уже есть).
+        Всё совпадает. -->
+    </div>
+
+    <!-- прозрачный футер для воздуха (не обязателен) -->
+    <div style="text-align: right; padding: 1rem 2.5rem 1.5rem; color: #a3b8cc; font-size: 0.85rem; border-top: 1px solid #e7ecf3;">
+        необычные увлечения · конланг · карвинг · geoguessr
+    </div>
+</div>
+</body>
+</html>
