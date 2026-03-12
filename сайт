@@ -1,11 +1,9 @@
-html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Необычные хобби | Конланг, карвинг по мылу, GeoGuessr</title>
-    <!-- Simple modern styling, matching the layout from the image -->
+    <title>Необычные хобби · живые фото</title>
     <style>
         * {
             margin: 0;
@@ -14,122 +12,150 @@ html
         }
 
         body {
-            background-color: #f7f9fc;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            color: #1e293b;
+            background-color: #eef3f8;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1a2b3e;
             line-height: 1.5;
             padding: 2rem 1.5rem;
         }
 
         .page {
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
-            background: white;
-            border-radius: 32px;
-            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 40px;
+            box-shadow: 0 30px 50px -20px rgba(0,30,50,0.3);
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.5);
         }
 
-        /* header area: title + contact/download row */
         .header {
-            padding: 2rem 2.5rem 0.5rem 2.5rem;
+            padding: 2rem 3rem 0.5rem 3rem;
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #1e2b3a, #2c3e50);
+            background: linear-gradient(145deg, #162b3a, #2c4c6c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
         }
 
         .header-row {
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #eef2f6;
+            border-bottom: 2px solid rgba(170, 192, 215, 0.5);
             padding-bottom: 1rem;
-            margin-top: 0.5rem;
+            margin-top: 0.2rem;
         }
 
         .contact-download {
             display: flex;
-            gap: 1.8rem;
-            font-weight: 500;
+            gap: 2rem;
         }
 
         .contact-download span {
+            font-weight: 550;
+            color: #1f4973;
+            background: rgba(255,255,255,0.7);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
             cursor: default;
-            color: #3b4e62;
-            font-size: 1.1rem;
-            border-bottom: 2px dotted transparent;
+            border: 1px solid #b7d0e9;
             transition: 0.2s;
+            font-size: 1.05rem;
         }
 
         .contact-download span:hover {
-            border-bottom-color: #8a9bb0;
+            background: white;
+            border-color: #4f7aa6;
         }
 
-        /* карточки хобби (три штуки) */
         .hobby-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.8rem;
-            padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+            gap: 2rem;
+            padding: 2.5rem 3rem 1.8rem 3rem;
         }
 
         .hobby-card {
-            background: #ffffff;
-            border-radius: 24px;
+            background: white;
+            border-radius: 32px;
             padding: 1.8rem 1.8rem 2rem 1.8rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
-            border: 1px solid #edf2f7;
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 25px -8px rgba(23, 45, 80, 0.15);
+            border: 1px solid #e0ecf9;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
         }
 
         .hobby-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 30px -8px rgba(0,40,60,0.12);
-            border-color: #dde7f0;
+            transform: scale(1.02) translateY(-6px);
+            box-shadow: 0 28px 35px -12px #1e3f60b0;
+            border-color: #b6d2ed;
+        }
+
+        .hobby-img {
+            width: 100%;
+            height: 170px;
+            border-radius: 22px;
+            background: #d6e5f5;
+            margin-bottom: 1.3rem;
+            overflow: hidden;
+            border: 1px solid white;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        /* Настоящие изображения */
+        .hobby-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .hobby-card:hover .hobby-img img {
+            transform: scale(1.06);
         }
 
         .hobby-title {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             font-weight: 650;
-            letter-spacing: -0.01em;
-            margin-bottom: 1.2rem;
-            color: #0f1a2c;
-            border-left: 5px solid #bcd0e4;
-            padding-left: 1rem;
+            margin-bottom: 0.9rem;
+            color: #0f293f;
+            border-left: 6px solid #98b9d9;
+            padding-left: 1.1rem;
         }
 
         .hobby-desc {
-            color: #2d3f53;
+            color: #2d4057;
             font-size: 1rem;
             line-height: 1.6;
+            flex: 1;
         }
 
-        /* small extra style for geo hint */
-        .geo-note {
-            margin-top: 1rem;
-            background: #f0f6fe;
-            padding: 0.5rem 1rem;
+        .meta-tag {
+            margin-top: 1.2rem;
+            background: #e4effa;
+            padding: 0.5rem 1.2rem;
             border-radius: 40px;
             font-size: 0.9rem;
-            color: #1e3f5f;
-            display: inline-block;
+            color: #1e4b77;
+            align-self: flex-start;
+            font-weight: 500;
         }
 
-        /* нижняя часть: Namely + колонки */
         .bottom-section {
-            background: #f0f4fa;
-            padding: 2rem 2.5rem 2.8rem 2.5rem;
-            margin-top: 1rem;
-            border-top: 1px solid #dbe4ed;
+            background: #e2ecf7;
+            padding: 2.5rem 3rem 3rem 3rem;
+            margin-top: 0.8rem;
+            border-top: 1px solid #cbdae9;
         }
 
         .namely-row {
@@ -137,35 +163,36 @@ html
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 2rem;
+            margin-bottom: 2.2rem;
         }
 
         .namely {
-            font-size: 1.9rem;
-            font-weight: 600;
-            color: #0d2b3e;
-            letter-spacing: -0.01em;
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: #0b314b;
         }
 
-        .namely + p {
-            color: #3b556e;
-            max-width: 400px;
+        .namely-row p {
+            color: #2a4c6e;
             font-style: italic;
+            background: rgba(255,255,255,0.5);
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
         }
 
         .columns {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 1.2rem;
+            gap: 2.5rem;
+            margin: 2rem 0 1.8rem;
         }
 
         .col h4 {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 650;
             margin-bottom: 1.2rem;
-            color: #183b56;
-            border-bottom: 2px solid #cbd6e4;
+            color: #123f60;
+            border-bottom: 3px solid #acc5e0;
             padding-bottom: 0.5rem;
             display: inline-block;
         }
@@ -175,67 +202,54 @@ html
         }
 
         .col li {
-            margin-bottom: 0.7rem;
-            color: #2c4763;
-            font-weight: 400;
+            margin-bottom: 0.8rem;
+            color: #25506b;
+            font-weight: 430;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
         }
 
         .col li::before {
-            content: "•";
-            color: #7089a8;
-            font-weight: bold;
-            font-size: 1.2rem;
+            content: "✨";
+            color: #6f8db0;
+            font-size: 1rem;
         }
 
-        /* support block extra */
         .support-block {
-            margin-top: 2.5rem;
-            background: #ffffffbb;
-            padding: 1.3rem 2rem;
-            border-radius: 60px;
+            background: rgba(255,255,255,0.7);
+            padding: 1.2rem 2.5rem;
+            border-radius: 100px;
             display: flex;
             flex-wrap: wrap;
-            gap: 2.5rem;
-            backdrop-filter: blur(2px);
-            border: 1px solid #d3e0ee;
+            gap: 3rem;
+            border: 1px solid #b8cfec;
+            margin-top: 2.5rem;
+            backdrop-filter: blur(4px);
         }
 
         .support-item {
-            color: #1a3c5e;
-            font-weight: 500;
+            color: #103d61;
+            font-weight: 550;
+            font-size: 1.05rem;
         }
 
-        /* адаптация */
-        @media (max-width: 900px) {
-            .hobby-grid, .columns {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        @media (max-width: 1000px) {
+            .hobby-grid { grid-template-columns: repeat(2, 1fr); }
+            .columns { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 700px) {
+            .hobby-grid { grid-template-columns: 1fr; }
+            .columns { grid-template-columns: 1fr; }
             .header { padding: 1.5rem; }
-        }
-
-        @media (max-width: 600px) {
-            .hobby-grid, .columns {
-                grid-template-columns: 1fr;
-            }
-            .header-row {
-                flex-direction: column;
-                align-items: start;
-                gap: 0.5rem;
-            }
-            .bottom-section { padding: 1.8rem; }
         }
     </style>
 </head>
 <body>
 <div class="page">
-    <!-- Шапка: Необычные хобби + Contact / Download (как в макете) -->
     <div class="header">
         <h1>Необычные хобби и увлечения</h1>
         <div class="header-row">
-            <!-- пустой div слева для баланса (либо можно ничего) -->
             <div></div>
             <div class="contact-download">
                 <span>📞 Contact</span>
@@ -244,50 +258,89 @@ html
         </div>
     </div>
 
-    <!-- Три карточки хобби (Конланг, Карвинг по мылу, GeoGuessr) с точными текстами из макета -->
+    <!-- 6 хобби с реальными фотографиями (Unsplash) -->
     <div class="hobby-grid">
-        <!-- Конланг -->
+        <!-- Конланг: языки, письменность -->
         <div class="hobby-card">
+            <div class="hobby-img">
+                <img src="https://images.unsplash.com/photo-1456518563096-0ff5ee08204e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Древние письмена и перо" loading="lazy">
+            </div>
             <div class="hobby-title">Конланг</div>
             <div class="hobby-desc">
-                Конланг — это создание искусственных языков, таких как дотракийский, клингонский и эсперанто.
+                Конланг — создание искусственных языков: дотракийский, клингонский, эсперанто и многие другие.
             </div>
-            <!-- маленькая деталь (иконка языка) чисто для настроения -->
-            <div style="margin-top: 1.2rem; font-size: 1.2rem;">🗣️ 🌐</div>
+            <div class="meta-tag">🔤 лингво-дизайн</div>
         </div>
 
-        <!-- Карвинг по мылу -->
+        <!-- Карвинг по мылу: резьба по мылу -->
         <div class="hobby-card">
+            <div class="hobby-img">
+                <img src="https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Мыло ручной работы с резьбой" loading="lazy">
+            </div>
             <div class="hobby-title">Карвинг по мылу</div>
             <div class="hobby-desc">
-                Карвинг по мылу — это вид искусства вырезания мыла с помощью различных инструментов для создания скульптур и изображений.
+                Карвинг по мылу — искусство вырезания из мыла с помощью специальных инструментов. Создают цветы, фигурки, барельефы.
             </div>
-            <div style="margin-top: 1.2rem;">🧼 ✨</div>
+            <div class="meta-tag">🫧 арома-скульптура</div>
         </div>
 
-        <!-- GeoGuessr (с дополнительной пометкой из макета) -->
+        <!-- GeoGuessr: карта/улицы -->
         <div class="hobby-card">
+            <div class="hobby-img">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Карта мира и навигация" loading="lazy">
+            </div>
             <div class="hobby-title">GeoGuessr</div>
             <div class="hobby-desc">
-                В игре используются карты Google Street View, игроку требуется угадать местоположение улицы/переулка/шоссе в мире, пометив его на карте Google Maps.
+                Игра на основе Google Street View: нужно угадать место на карте мира по виду улицы, переулка или шоссе.
             </div>
-            <div class="geo-note">🌍📍 угадай локацию</div>
+            <div class="meta-tag">🛣️ гео-детектив</div>
+        </div>
+
+        <!-- Фризлайт: световое граффити -->
+        <div class="hobby-card">
+            <div class="hobby-img">
+                <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Рисование светом в темноте" loading="lazy">
+            </div>
+            <div class="hobby-title">Фризлайт</div>
+            <div class="hobby-desc">
+                Рисование светом на длинной выдержке. С помощью фонариков и других источников создаются светящиеся узоры в ночном пространстве.
+            </div>
+            <div class="meta-tag">💡 light painting</div>
+        </div>
+
+        <!-- Хоббихорсинг: игрушечная лошадка -->
+        <div class="hobby-card">
+            <div class="hobby-img">
+                <img src="https://images.unsplash.com/photo-1596273318290-12f559dd1174?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Девочка с игрушечной лошадкой на палке" loading="lazy">
+            </div>
+            <div class="hobby-title">Хоббихорсинг</div>
+            <div class="hobby-desc">
+                Спортивно-игровое хобби: имитация верховой езды на игрушечной лошади (палке с головой лошади). Включает конкур и выездку.
+            </div>
+            <div class="meta-tag">🏇 картон-дерби</div>
+        </div>
+
+        <!-- Сникер-арт: кастом кроссовок -->
+        <div class="hobby-card">
+            <div class="hobby-img">
+                <img src="https://images.unsplash.com/photo-1552346154-2173fa4eaeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Яркие разрисованные кроссовки" loading="lazy">
+            </div>
+            <div class="hobby-title">Сникер-арт</div>
+            <div class="hobby-desc">
+                Индивидуальная роспись и кастомизация кроссовок. Художники превращают обычную обувь в уникальные арт-объекты.
+            </div>
+            <div class="meta-tag">👟 кастом</div>
         </div>
     </div>
 
-    <!-- Нижняя часть — Namely + Features, Learn more, Support (в точности по макету) -->
+    <!-- нижняя часть (полностью по макету) -->
     <div class="bottom-section">
-        <!-- строка Namely с описанием компании (как в макете) -->
         <div class="namely-row">
-            <div>
-                <span class="namely">Namely</span>
-            </div>
+            <span class="namely">Namely</span>
             <p>Descriptive line about what your company does.</p>
         </div>
 
-        <!-- три колонки: Features, Learn more, Support (точно по тексту) -->
         <div class="columns">
-            <!-- Features (с подпунктами) -->
             <div class="col">
                 <h4>Features</h4>
                 <ul>
@@ -296,7 +349,6 @@ html
                     <li>Integrations</li>
                 </ul>
             </div>
-            <!-- Learn more (с подпунктами) -->
             <div class="col">
                 <h4>Learn more</h4>
                 <ul>
@@ -306,7 +358,6 @@ html
                     <li>Best practices</li>
                 </ul>
             </div>
-            <!-- Support (с подпунктами) -->
             <div class="col">
                 <h4>Support</h4>
                 <ul>
@@ -317,26 +368,15 @@ html
             </div>
         </div>
 
-        <!-- дополнительный блок "Contact / Support / Legal" уже есть в колонке Support, 
-        но в оригинальном макете снизу есть повтор "Contact Support Legal"? 
-        В макете после колонок снова написано Support с контактами. Но мы уже всё вывели. 
-        Для точности: в самом низу макета было "Support - Contact - Support - Legal". 
-        Я добавлю деликатную строку с этими тремя словами, чтобы полностью повторить идею.  -->
         <div class="support-block">
             <span class="support-item">📬 Contact</span>
             <span class="support-item">🛠️ Support</span>
             <span class="support-item">⚖️ Legal</span>
         </div>
-
-        <!-- маленькая подсказка: в макете было также "Namely" и "Features ..." – всё уже есть. 
-        Ещё раз ссылка на Download/Contact в шапке, но нижний блок тоже содержит Contact.
-        В точности как на изображении: после Features, Learn more, Support идёт строчка Namely (уже есть).
-        Всё совпадает. -->
     </div>
 
-    <!-- прозрачный футер для воздуха (не обязателен) -->
-    <div style="text-align: right; padding: 1rem 2.5rem 1.5rem; color: #a3b8cc; font-size: 0.85rem; border-top: 1px solid #e7ecf3;">
-        необычные увлечения · конланг · карвинг · geoguessr
+    <div style="padding: 1rem 3rem 1.8rem; color: #5c7699; border-top: 1px solid rgba(159, 183, 212, 0.4); background: white; text-align: center; font-size: 0.9rem;">
+        ✨ Конланг · Карвинг · GeoGuessr · Фризлайт · Хоббихорсинг · Сникер-арт ✨
     </div>
 </div>
 </body>
